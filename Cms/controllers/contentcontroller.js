@@ -1,5 +1,5 @@
-const e = require('express');
-const content = require('../model/content');
+const express = require('express');
+const content = require('../models/content');
 const validatecontnet = require('../validation/contentvalidation')
 
 
@@ -7,6 +7,7 @@ const validatecontnet = require('../validation/contentvalidation')
  exports.CreateContent = async (req,res) =>{
     //const {name ,content} = req.body;
     try{
+     //content validation here
       const content = new content(req.body)
       await content.save();
       res.status(201).json({message:'content created successfully',data:content});
@@ -19,6 +20,7 @@ const validatecontnet = require('../validation/contentvalidation')
 
 exports.UpdateContnet = async (req,res) =>{
     try{
+        //content validation here
         const content = await content.findByIdAndUpdate(req.params.id, req.body,{new :true})
         if(!content){
             res.status(404).json({message:"content not found"});
@@ -33,6 +35,8 @@ exports.UpdateContnet = async (req,res) =>{
 
 exports.getallcontent = async (req,res) =>{
     try{
+        //content validation here
+
         const contents = await content.findById(req.params.id)
         if(!content){
             res.status(404).json({message:"content not found"});
@@ -48,6 +52,7 @@ exports.getallcontent = async (req,res) =>{
 
 exports.DeleteContent = async (req,res) =>{
      try{
+        //content validation here
        const content = await content.findByIdAndDelete(req.params.id);
        if(!content) res.status(404).json({message:"content not found"});
        res.status(200).json({message:"content deleted successfully"});

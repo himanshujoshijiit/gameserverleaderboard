@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post(
     '/upload',
-    multer.single('file');
+    multer.single('file'),
     mediacontroller.uploadMedia
 );
 

@@ -17,11 +17,8 @@ const contentSchema = new mongoose.Schema({
       type: String,
       enum: ['draft', 'published', 'archived'],
       default: 'draft'
-  },   
-    id{
-      type: Character,
-      required:true
-    },
+  }  
+     
 
 });
 

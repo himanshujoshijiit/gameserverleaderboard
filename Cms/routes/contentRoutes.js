@@ -6,23 +6,24 @@ const {createpostshema,updatepostshema} = require('../validation/contentvalidati
 
 const router = express.Router();
 
+//validation needs to add in each methods
+
+
 router.post(
     '/',
-    validate(createpostshema),
-    contentcontroller.createContent
+    contentcontroller.CreateContent
 );
 
-router.get('/',contentcontroller.getAllpost);
+router.get('/',contentcontroller.getallcontent);
 
-router.get('/:id',contentcontroller.getPostById);
+//router.get('/:id',contentcontroller.getPostById);
 
 router.put(
     '/:id',
-    validate(updatepostshema),
-    contentcontroller.updatepost
+    contentcontroller.UpdateContnet
 );
 
-router.delete('/:id',contentcontroller.deletePost);
+router.delete('/:id',contentcontroller.DeleteContent);
 
 module.exports = router;
 

@@ -1,4 +1,4 @@
-const Media = require('../model/media');
+const Media = require('../models/media');
 const Storageservice = require('../services/storageservice');
 const validatecontnet = require('../validation/mediaValidation');
 
@@ -15,7 +15,7 @@ exports.uploadMedia = async (req,res) =>{
     //check if files exits
     if(!req.file) return res.staus(400).json({error :'No files uploaded'});
 
-    const uploadresult  = await Storageservice.uploadFiles(req.file);
+    const uploadresult  = await Storageservice.uploadfile(req.file);
     
     const Media = new Media({
         title:req.body.title,
@@ -25,7 +25,7 @@ exports.uploadMedia = async (req,res) =>{
 
     });
 
-    await media.save();
+    await Media.save();
 
    res.status(201).json({message: 'Media files uplaoded successfully'});
 
@@ -39,7 +39,7 @@ exports.uploadMedia = async (req,res) =>{
 
 exports.getAllmedia = async (req,res) =>{
    try{
-       const medafiles = awiar Media.find();
+       const medafiles = await Media.find()
         res.json({data: mediafiles});
    }catch(error){
     res.status(500).json({error: 'failed to retrieve media files'});
@@ -68,7 +68,7 @@ exports.deletefiles = async (req,res) =>{
     if(!media) return res.status(404).json({error: 'Media not find'})
     
         // Delete media files from storage
-        await Storageservice.deletefiles(media.file);
+        await Storageservice.deletefile(media.file);
 
         //delete media documentys from mongodb
         await media.remove();

@@ -1,20 +1,43 @@
-const AWS = require("aws-sdk")
-const S3 = new AWS.S3();
+const AWS = require("aws-sdk");
+const { deletefiles } = require("../controllers/mediacontroller");
+const s3 = new AWS.S3();
 
-export.uploadfile = (file) =>{
-    const params = {
-        Bucket:;
-        Key:;
-        Body:;
-        ContentType:;
+class Storageservice{
+    constructor(bucketName){
+        this.bucketName = bucketName
     }
-  return S3.upload(params).promise();
+
+
+/**
+   * Upload a file to S3
+   * @param {Buffer} fileBuffer - File content
+   * @param {string} fileName - Name of the file
+   * @returns {Promise<string>} - URL of the uploaded file
+   */
+
+async uploadfile(fileBuffer,fileName){
+    const params ={
+        Bucket:this.bucketName,
+        key:fileName,
+        Body:fileBuffer
+    }
+    const result = await s3.upload(params).promise();
+    return result.Location;
+} 
+
+/**
+   * Delete a file from S3
+   * @param {string} fileName - Name of the file
+   * @returns {Promise<void>}
+   */
+
+  async deletefile(fileName){
+    const params = {
+        Bucket:this.bucketName,
+        key:fileName
+    };
+    await s3.deleteObject(params).promise();
+  }
 }
 
-exports.deletefile = (fileUrl) =>{
-    const key:
-    const params:;
-
-    retrun s3.deleteobject(params).promise();
-
-}
+module.exports = new Storageservice('your-bucket-name')
