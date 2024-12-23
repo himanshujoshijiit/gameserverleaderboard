@@ -2,17 +2,19 @@ const express = require('express');
 
 const router = express.Router();
 
-const chatcontroller = require('../controller/socialCOntroller');
-const authenticate = require('../middlewares/auth');
-const rateLimiter = require('../middlewares/rateLimit');
+const socialcontroller = require('../controllers/socialcontroller');
+//const authenticate = require('../middleware/auth');
+//const rateLimiter = require('../middleware/ratelimit');
 
-router.post('/create', rateLimiter, authenticate, socialController.createPost);
-router.post('/like', rateLimiter, authenticate, socialController.likePost);
-router.post('/unlike', rateLimiter, authenticate, socialController.unlikePost);
-router.post('/comment', rateLimiter, authenticate, socialController.addComment);
+//TODO : ratelimit and authentication check here in router post 
 
+router.post('/create',socialcontroller.createpost);
+router.post('/like', socialcontroller.likepost);
+router.post('/unlike', socialcontroller.unlikepost);
+router.post('/comment', socialcontroller.addComment);
 
-router.post();
-router.get();
+router.get('/', socialcontroller.getallpost);
+
+ 
 
 module.exports = router; 

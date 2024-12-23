@@ -2,13 +2,13 @@ const express = require('express');
 
 const router = express.Router();
 
-const validate = require('../middlewares/validate');
-const validateMessage = require('../validations/messageValidation');
-const chatcontroller = require('../controller/chatCOntroller');
+//const validate = require('../middlewares/validate');
+//const validateMessage = require('../validations/messageValidation');
+const chatcontroller = require('../controllers/chatcontroller');
 
-router.post();
-router.get();
-router.post('/send', validate(validateMessage), chatController.sendMessage);
+ 
+router.get('/',chatcontroller.getConversation);
+router.post('/send',chatcontroller.sendMessage);
 
 
 

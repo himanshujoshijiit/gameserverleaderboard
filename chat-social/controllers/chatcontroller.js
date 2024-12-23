@@ -1,5 +1,4 @@
-const message = require('../model/message');
-const Message =  require('../models/message');
+const Message =  require('../model/message');
 const validateMessage = require('../validation/messagevalidation');
 
 //send message
@@ -20,7 +19,7 @@ exports.sendMessage = async(req,res) =>{
 
 //get convertion history
 
-exports.getConversation = async (req,res) = >{
+exports.getConversation = async (req,res) => {
   const {userId1, userId2} = req.params;
 
   try{

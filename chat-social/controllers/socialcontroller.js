@@ -1,12 +1,12 @@
-const socialpost = require('../models/socialPost');
-const validatePost = require('../validations/postValidation');
-const User = require('../models/user');
+const socialpost = require('../model/socialPOst');
+const validatePost = require('../validation/postvalidation');
+//const User = require('../models/user');
 
 //create new post
 
 exports.createpost = async (req,res)=>{
     const {error } = validatePost(req.body);
-    if(error) return res.status(400).json({ error.details[0].message});
+    if(error) return res.status(400).json({ error});
 
     const {author, content} = req.body;
 
