@@ -6,10 +6,10 @@ const bodyParser = require('body-parser');
 //import http from 'http';
 //import socketIo from 'socket.io';
 const leaderboardRoutes = require('./routes/leaderboard');
-const chatService =  require('./chat-social/services/chat-service');
+//const chatService =  require('./chat-social/services/chat-service');
 const redisClient = require('./services/redis');
-const contentRoute = require('./Cms/routes/contentRoutes');
-const mediaRoute = require('./Cms/routes/mediaRoute');
+//const contentRoute = require('./Cms/routes/contentRoutes');
+//const mediaRoute = require('./Cms/routes/mediaRoute');
 
 
 
@@ -25,7 +25,7 @@ const io = socketIo(server);
 
 //intialize scoket.io for real time updates
 
-chatService(io);
+//chatService(io);
 
 //use the leaderboard api modules
 
@@ -34,8 +34,8 @@ chatService(io);
 
 app.use(bodyParser.json()); // Middleware to parse JSON requests
 app.use('/api/leaderboard', leaderboardRoutes); // Mount leaderboard routes
-app.use('/api/contentRoutes',contentRoute);
-app.use('/api/mediaRoutes',mediaRoute);
+//app.use('/api/contentRoutes',contentRoute);
+//app.use('/api/mediaRoutes',mediaRoute);
 
 
 
