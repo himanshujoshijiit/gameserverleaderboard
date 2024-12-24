@@ -1,0 +1,16 @@
+{
+    "services":{
+      "cms":{
+        "host":"http://localhost",
+        "port":3002
+      },
+      "chatsocial":{
+        "host":"http://localhost",
+         "port": 3001
+      } ,
+      "leaderboard":{
+        "host":"http://localhost",
+        "port": 3000
+      }     
+    }
+}

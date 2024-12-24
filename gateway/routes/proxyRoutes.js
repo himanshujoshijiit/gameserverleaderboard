@@ -1,0 +1,1 @@
+// all endpoints routes that are used in gatway.js
