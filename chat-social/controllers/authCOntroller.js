@@ -13,7 +13,7 @@ const authcontroller = {
 
             //check if user already exist
 
-            const extuser = await UserActivation.User.findone({username});
+            const extuser = await User.findone({username});
             if(extuser){
                 return res.status(400).json({message:"user already exit"});
             }

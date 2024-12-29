@@ -2,11 +2,17 @@ const express = require('express')
 const http = require('http')
 const socketIo = require('socket.io')
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
  
 //  const redisClient = require('./services/redis');
  const chatroute = require('./routes/chatroute');
  const socialroute = require('./routes/socialroute');
  const authroute = require('./routes/authRoute');
+
+
+mongoose.connect('mongodb://localhost:27017/ChatSocial')
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('Failed to connect to MongoDB', err));
 
 
 
@@ -33,7 +39,7 @@ app.use(bodyParser.json()); // Middleware to parse JSON requests
 app.use('/api/chat', chatroute); // Mount leaderboard routes
 app.use('/api/social',socialroute);
 // app.use('/api/mediaRoutes',mediaRoute);
-app.use('./api/auth',authroute);
+app.use('/api/auth',authroute);
 
 
 
