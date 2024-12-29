@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 //  const redisClient = require('./services/redis');
  const chatroute = require('./routes/chatroute');
  const socialroute = require('./routes/socialroute');
+ const authroute = require('./routes/authRoute');
 
 
 
@@ -32,6 +33,8 @@ app.use(bodyParser.json()); // Middleware to parse JSON requests
 app.use('/api/chat', chatroute); // Mount leaderboard routes
 app.use('/api/social',socialroute);
 // app.use('/api/mediaRoutes',mediaRoute);
+app.use('./api/auth',authroute);
+
 
 
 
