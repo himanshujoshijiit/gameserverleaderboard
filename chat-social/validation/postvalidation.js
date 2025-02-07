@@ -2,8 +2,7 @@ const Joi = require('joi');
 const { ModifiedPathsSnapshot } = require('mongoose');
 
 const postValidation = Joi.object({
-            sender: Joi.string().required(),
-            receiver: Joi.string().required(),
+            author: Joi.string().required(),
             content: Joi.string().min(1).max(500).required()
 });
 

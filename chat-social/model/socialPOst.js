@@ -9,7 +9,7 @@ const socialPostSchema = new Schema({
     },
     likes:{
         type:Number,
-        required:true
+        required:false
     },
     content:{
         type:String,
@@ -23,15 +23,15 @@ const socialPostSchema = new Schema({
         {
             user:{
                 type:String,
-                required:true
+                required:false
             },
             content:{
                 type:String,
-                required:true
+                required:false
             },
             timestamp:{
                 type:Date,
-                required:true
+                required:false
             }
 
         }

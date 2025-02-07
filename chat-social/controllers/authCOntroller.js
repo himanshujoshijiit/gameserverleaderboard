@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const User =  require('../model/User');
+const User =  require('../model/user')
 const SECRET_KEY = process.env.JWT_SECRET || 'your_jwt_secret_key';// ??
 
 
@@ -13,11 +13,16 @@ const authcontroller = {
 
             //check if user already exist
 
-            const extuser = await User.findone({username});
+            const extuser = await User.findOne({username});
             if(extuser){
                 return res.status(400).json({message:"user already exit"});
             }
             //hash the password
+
+            if (!password) {
+                return res.status(400).json({ error: "Password is required" });
+            }
+            
 
             const hashedpasd = await bcrypt.hash(password,10);
 
@@ -42,7 +47,7 @@ const authcontroller = {
 
             //find in database
 
-            const user = await User.findone({username});
+            const user = await User.findOne({username});
 
             if(!user){
                 return res.status(404).json({message:"user not exist"})
@@ -57,7 +62,7 @@ const authcontroller = {
 
             //generate jst-token
 
-            const token = jwt.sign({id: user._id ,username: user.username},JWT_SECRET,{
+            const token = jwt.sign({id: user._id ,username: user.username},process.env.JWT_SECRET,{
                 expiresIn:'1h',
             });//how it works??
 

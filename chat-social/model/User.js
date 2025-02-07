@@ -6,11 +6,11 @@ const userSchema = new mongoose.Schema({
       required:true,
       unique:true
     },
-    email:{
-        type:String,
-        required:true,
-        unique:true,
-    },
+    // email:{
+    //     type:String,
+    //     required:false,
+    //     unique:true,
+    // },
     password:{
         type:String,
         required:true,
@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     role:{
         type:String,
         enum:['admin','editor','viewer'],
-        default:'viwer',
+        default:'viewer',
     },
     createdAt:{
         type:Date,

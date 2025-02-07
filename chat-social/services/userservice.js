@@ -41,7 +41,7 @@ const sendfriendrequest = async(senderId,receiverId) =>{
 
 //Accept the request
 
-cosnt acceptRequest = async (userId,senderId) =>{
+const acceptRequest = async (userId,senderId) =>{
     try{
         const sender = await User.findById(senderId);
         const receiver = await User.findById(receiverId);

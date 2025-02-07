@@ -9,7 +9,7 @@ const  router = express.Router();
 //public routes
 
 router.post('/signup',authcontroller.signup);
-router.post('./login',authcontroller.login);
+router.post('/login',authcontroller.login);
 
 //protected route example
 

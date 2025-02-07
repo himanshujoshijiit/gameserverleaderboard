@@ -9,6 +9,7 @@ exports.createpost = async (req,res)=>{
     if(error) return res.status(400).json({ error});
 
     const {author, content} = req.body;
+    console.log("post req body is ",req.body);
 
     try{
       const post = new socialpost({author,content});

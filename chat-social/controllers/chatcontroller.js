@@ -1,4 +1,6 @@
 const Message =  require('../model/message');
+const { findOne } = require('../model/user');
+const User = require('../model/user');
 const validateMessage = require('../validation/messagevalidation');
 
 //send message
@@ -6,8 +8,17 @@ const validateMessage = require('../validation/messagevalidation');
 exports.sendMessage = async(req,res) =>{
     const {error} = validateMessage(req.body);
     if (error) return res.status(400).json({ error: error.details[0].message });
+
+    
     
     const {sender, receiver, content}   = req.body;
+
+    const sendrExist = await User.findOne({username: sender });
+    if(!sendrExist) return res.status(400).json({ error : "sender does not exist"});
+
+    const receverExist = await User.findOne({username: receiver });
+    if(!receverExist) return res.status(400).json({ error : "recever does not exist"});
+
     try{
        const message = new Message({sender, receiver, content});
        await message.save();

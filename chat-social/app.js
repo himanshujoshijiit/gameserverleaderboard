@@ -3,7 +3,8 @@ const http = require('http')
 const socketIo = require('socket.io')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
- 
+require('dotenv').config();
+
 //  const redisClient = require('./services/redis');
  const chatroute = require('./routes/chatroute');
  const socialroute = require('./routes/socialroute');
@@ -20,6 +21,8 @@ mongoose.connect('mongodb://localhost:27017/ChatSocial')
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 //create http server for socket.io
 
