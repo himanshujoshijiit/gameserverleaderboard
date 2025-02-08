@@ -1,16 +1,18 @@
 const express = require('express');
-const content = require('../models/content');
+const content1 = require('../models/content');
 const validatecontnet = require('../validation/contentvalidation')
 
 
 //create  content
  exports.CreateContent = async (req,res) =>{
     //const {name ,content} = req.body;
+    console.log("createcontent",req.body);
     try{
      //content validation here
-      const content = new content(req.body)
-      await content.save();
-      res.status(201).json({message:'content created successfully',data:content});
+     const {title ,author, description} = req.body;
+      const contents = new content1({title,author, description});
+      await contents.save();
+      res.status(201).json({message:'content created successfully',data:contents});
     }catch(error ){
         res.status(400).json({error:error.message})
     }

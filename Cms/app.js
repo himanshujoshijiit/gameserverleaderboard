@@ -2,15 +2,20 @@ const express = require('express')
 const http = require('http')
 const socketIo = require('socket.io')
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
+
 //import express from 'express';
 //import http from 'http';
 //import socketIo from 'socket.io';
 //const leaderboardRoutes = require('./routes/leaderboard');
 //const chatService =  require('./chat-social/services/chat-service');
-const redisClient = require('./services/redis');
-const contentRoute = require('./Cms/routes/contentRoutes');
-const mediaRoute = require('./Cms/routes/mediaRoute');
+//const redisClient = require('./services/redis');
+const contentRoute = require('../Cms/routes/contentRoutes');
+const mediaRoute = require('../Cms/routes/mediaRoute');
 
+mongoose.connect('mongodb://localhost:27017/Cms')
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('Failed to connect to MongoDB', err));
 
 
 //create express app
@@ -25,7 +30,7 @@ const io = socketIo(server);
 
 //intialize scoket.io for real time updates
 
-chatService(io);
+//chatService(io);
 
 //use the leaderboard api modules
 
@@ -55,7 +60,7 @@ app.get('/api/mediaRoutes',(req,res)=>{
 
 
 // Redis test route
-app.get('/redis', (req, res) => {
+/*app.get('/redis', (req, res) => {
     redisClient.set('test-key', 'test-value', redis.print);
     console.log("redis");
     redisClient.get('test-key', (err, reply) => {
@@ -64,7 +69,7 @@ app.get('/redis', (req, res) => {
         }
         res.json({ message: 'Redis value:', value: reply });
     });
-})
+})*/
 
 //start the server
 

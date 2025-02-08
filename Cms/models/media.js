@@ -12,11 +12,11 @@ const mediaShema = new mongoose.Schema({
     },
     contentType:{
      type:String,
-     required: true
+     required: false
     },
     size:{
     type:Number,
-    required:true
+    required:false
     },
     uploadAt:{
         type:Date,
@@ -26,7 +26,7 @@ const mediaShema = new mongoose.Schema({
     uploadBy:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User',
-        required:true
+        required:false
     },
 });
 
