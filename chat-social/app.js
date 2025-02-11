@@ -3,7 +3,10 @@ const http = require('http')
 const socketIo = require('socket.io')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
+const cors = require("cors");
 require('dotenv').config();
+
+ 
 
 //  const redisClient = require('./services/redis');
  const chatroute = require('./routes/chatroute');
@@ -23,6 +26,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// ✅ Allow requests from frontend
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
+// ✅ Or allow all origins (use only for development)
+app.use(cors());
 
 //create http server for socket.io
 
